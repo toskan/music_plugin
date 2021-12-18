@@ -15,6 +15,15 @@ const observer = new MutationObserver((mutationList) => {
 			console.log(
 				`Favorited Song: artist: ${artist} title: ${song} album: ${album}`
 			);
+
+			chrome.runtime.sendMessage(
+				{
+					starredSongInfo: `artist: ${artist} title: ${song} album: ${album}`,
+				},
+				function (response) {
+					console.log(response);
+				}
+			);
 		}
 	});
 });
