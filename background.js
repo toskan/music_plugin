@@ -10,6 +10,6 @@ chrome.runtime.onInstalled.addListener(() => {
 	console.log('Default background color set to %cgreen', `color: ${color}`);
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-	console.log(request.starredSongInfo);
-});
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+// 	console.log(request.starredSongInfo);
+// });
