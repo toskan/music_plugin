@@ -18,7 +18,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://*.wfmu.org/*"],
+			"matches": ["https://*.wfmu.org/playlists/shows/*"],
 			"js": ["star.js"]
 		}
 	]
