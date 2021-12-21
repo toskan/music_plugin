@@ -1,4 +1,4 @@
-class Scrape {
+export default class Scrape {
 	constructor(artist, track, album, apiMethod) {
 		this.dropTable = document.querySelector('#drop_table tbody');
 		this.artist = artist;
@@ -68,5 +68,3 @@ class Scrape {
 		});
 	}
 }
-
-let scrape = new Scrape();

@@ -6,7 +6,7 @@
 	"background": {
 		"service_worker": "background.js"
 	},
-	"permissions": ["storage", "activeTab", "scripting", "tabs"],
+	"permissions": ["storage", "activeTab", "scripting"],
 	"action": {
 		"default_popup": "popup.html",
 		"default_icon": {
@@ -19,11 +19,11 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*.wfmu.org/playlists/shows/*"],
-			"js": ["scrobble.js"]
+			"js": ["scrobble.js", "lastFmApiCalls.js"]
 		},
 		{
 			"matches": ["https://*.last.fm/api/auth?token*"],
-			"js": ["lastFm.js"]
+			"js": ["lastFmGetToken.js"]
 		}
 	]
 }
