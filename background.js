@@ -1,15 +1,24 @@
-// TODO: prompt for authorization
-// chrome.storage.sync.set({ color });
-
-// background.js
-
-let color = '#3aa757';
-
 chrome.runtime.onInstalled.addListener(() => {
-	chrome.storage.sync.set({ color });
-	console.log('Default background color set to %cgreen', `color: ${color}`);
+	chrome.storage.onChanged.addListener(function (changes) {
+		for (let [key] of Object.entries(changes)) {
+			chrome.storage.sync.get(
+				['apiKey', 'token', 'step'],
+				function (obj) {
+					let apiKey = obj.apiKey;
+					let step = obj.step;
+					console.log(obj.token);
+					openAuthWindow(step, apiKey);
+				}
+			);
+		}
+	});
 });
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-// 	console.log(request.starredSongInfo);
-// });
+const openAuthWindow = (step, apiKey) => {
+	if (step == 'scrobbleReady') {
+		var url = `https://www.last.fm/api/auth/?api_key=${apiKey}`;
+		chrome.tabs.create({ url });
+	} else {
+		console.log(step + 'step in else');
+	}
+};

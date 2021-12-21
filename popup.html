@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="popup.css" />
-	</head>
-	<body>
-		<h1 id="url"></h1>
-	</body>
-	<script src="popup.js"></script>
+
+    <head>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+
+    <body>
+        <div id='heading'>
+            <h4>WFMU Radio to Last.fm Connect</h1>
+        </div>
+        <div>
+            <div id='get-credentials'>
+                <h5>Create or get your Last.fm API Credentials</h4>
+                    <p><a href="http://www.last.fm/api/accounts" target="_blank">Last.fm</a></p>
+            </div>
+            <div id="key-submit">
+                <form action="/action_page.php" id='credentials-form-key'>
+                    <label for="lastFmApiKey">API Key:</label><br />
+                    <input type="text" id="api-key" name="lastFmApiKey" value="" /><br /><br />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+            <div id="secret-submit">
+                <form action="/action_page.php" id='credentials-form-secret'>
+                    <label for="lastFmApiSecret">Shared Secret:</label><br />
+                    <input type="text" id="api-secret" name="lastFmApiSecret" value="" /><br /><br />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+        <div id='scrobble-ready'>
+            <h5>Ready to track your WFMU listening and favorites</h5>
+        </div>
+        <div id='reset'>
+            <button id='reset-button'>Reset Key and Secret</button>
+        </div>
+    </body>
+    <script src="popup.js"></script>
+
 </html>
