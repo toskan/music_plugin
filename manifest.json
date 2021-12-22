@@ -22,6 +22,10 @@
 			"js": ["scrobble.js", "lastFmApiCalls.js"]
 		},
 		{
+			"matches": ["https://*.wfmu.org/listen-live/*"],
+			"js": ["wfmuPlayRadioApi.js"]
+		},
+		{
 			"matches": ["https://*.last.fm/api/auth?token*"],
 			"js": ["lastFmGetToken.js"]
 		}
