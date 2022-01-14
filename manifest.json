@@ -19,7 +19,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*.wfmu.org/playlists/shows/*"],
-			"js": ["scrobble.js", "lastFmApiCalls.js"]
+			"js": ["scrobble.js"]
 		},
 		{
 			"matches": ["https://*.wfmu.org/listen-live/*"],
