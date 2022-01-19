@@ -1,75 +1,7 @@
-export class Scrape {
-	constructor(artist, track, album, apiMethod) {
-		this.dropTable = document.querySelector('#drop_table tbody');
-		this.artist = artist;
-		this.track = track;
-		this.album = album;
-		this.apiMethod = apiMethod;
-
-		this.starObserver = new MutationObserver((mutationList) => {
-			mutationList.forEach(({ target, oldValue }) => {
-				if (
-					target.src.includes('favorited') &&
-					oldValue.includes('empty')
-				) {
-					let parent =
-						target.parentNode.parentNode.parentNode.parentNode;
-
-					this.apiMethod = 'track.love';
-
-					this.artist =
-						parent.querySelectorAll(
-							'.col_artist font'
-						)[0].innerText;
-
-					this.track = parent.querySelectorAll(
-						'.col_song_title font'
-					)[0].innerText;
-
-					this.album = parent.querySelectorAll(
-						'.col_album_title font'
-					)[0].innerText;
-					console.log(this);
-				}
-			});
-		});
-
-		this.getValueByClass = (node, klass) => {
-			const child = Array.prototype.find.call(node.children, (child) => {
-				return child.classList.contains(klass);
-			});
-
-			return child?.children?.[0]?.innerText;
-		};
-
-		this.observerLive = new MutationObserver((mutationList) => {
-			mutationList.forEach(({ addedNodes }) => {
-				addedNodes.forEach((node) => {
-					if (!/^drop_/.test(node.id)) {
-						return true;
-					}
-					this.method = 'track.scrobble';
-					this.artist = this.getValueByClass(node, 'col_artist');
-					this.track = this.getValueByClass(node, 'col_song_title');
-					this.album = this.getValueByClass(node, 'col_album_title');
-					console.log(this);
-				});
-			});
-		});
-
-		this.starObserver.observe(this.dropTable, {
-			attribute: true,
-			attributeFilter: ['src'],
-			subtree: true,
-			attributeOldValue: true,
-		});
-		this.observerLive.observe(this.dropTable, {
-			childList: true,
-		});
-	}
-}
-
-let scrape = new Scrape();
+let apiKey;
+let secret;
+let sessionKey = 'nZHFQVj9sTMn-342BhuDO_Lx6hKaQQ_L';
+let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
 
 /**
 
@@ -83,7 +15,7 @@ let scrape = new Scrape();
 
 **/
 
-const MD5 = (string) => {
+var MD5 = function (string) {
 	function RotateLeft(lValue, iShiftBits) {
 		return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
 	}
@@ -426,30 +358,104 @@ const MD5 = (string) => {
 	return temp.toLowerCase();
 };
 
-let apiKey = chrome.storage.sync.get(apiKey);
-let secret = chrome.storage.sync.get(apiSecret);
-let token = chrome.storage.sync.get(token);
-let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
-
-const signAuth = (method) => {
-	return MD5(`api_key${apiKey}method${method}token${token}${secret}`);
-};
-
-const authUrl = () => {
-	let method = 'auth.getSession';
-	let s = signAuth(method);
-	//call returns sessionKey
-	return `${apiRoot}?method=${method}&api_key=${apiKey}&token=${token}&api_sig=${s}`;
-};
+this.values = chrome.storage.sync.get(
+	['apiKey', 'apiSecret', 'token'],
+	function (res) {
+		apiKey = res.apiKey;
+		secret = res.apiSecret;
+	}
+);
 
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');
-	return md5(`${params}${secret}`);
+	return MD5(`${params}${secret}`);
 };
 
-const likeSong = () => {
-	let method = 'track.love';
+const loveTrack = (artist, method, track) => {
 	let params = `api_key=${apiKey}&artist=${artist}&method=${method}&sk=${sessionKey}&track=${track}`;
 	let s = sign(params);
-	return `${apiRoot}?${params}&api_sig=${s}`;
+	var requestOptions = {
+		method: 'POST',
+		redirect: 'follow',
+	};
+	fetch(`${apiRoot}?${params}&api_sig=${s}`, requestOptions)
+		.then((response) => response.text())
+		.then((result) => console.log(result))
+		.catch((error) => console.log('error', error));
 };
+
+class Scrape {
+	constructor(artist, track, album, apiMethod) {
+		this.dropTable = document.querySelector('#drop_table tbody');
+		this.artist = artist;
+		this.track = track;
+		this.album = album;
+		this.apiMethod = apiMethod;
+
+		this.starObserver = new MutationObserver((mutationList) => {
+			mutationList.forEach(({ target, oldValue }) => {
+				if (
+					target.src.includes('favorited') &&
+					oldValue.includes('empty')
+				) {
+					let parent =
+						target.parentNode.parentNode.parentNode.parentNode;
+
+					this.apiMethod = 'track.love';
+
+					this.artist =
+						parent.querySelectorAll(
+							'.col_artist font'
+						)[0].innerText;
+
+					this.track = parent.querySelectorAll(
+						'.col_song_title font'
+					)[0].innerText;
+
+					this.album = parent.querySelectorAll(
+						'.col_album_title font'
+					)[0].innerText;
+					console.log(this);
+					values.then(
+						loveTrack(this.artist, this.apiMethod, this.track)
+					);
+				}
+			});
+		});
+
+		this.getValueByClass = (node, klass) => {
+			const child = Array.prototype.find.call(node.children, (child) => {
+				return child.classList.contains(klass);
+			});
+
+			return child?.children?.[0]?.innerText;
+		};
+
+		this.observerLive = new MutationObserver((mutationList) => {
+			mutationList.forEach(({ addedNodes }) => {
+				addedNodes.forEach((node) => {
+					if (!/^drop_/.test(node.id)) {
+						return true;
+					}
+					this.method = 'track.scrobble';
+					this.artist = this.getValueByClass(node, 'col_artist');
+					this.track = this.getValueByClass(node, 'col_song_title');
+					this.album = this.getValueByClass(node, 'col_album_title');
+					console.log(this);
+				});
+			});
+		});
+
+		this.starObserver.observe(this.dropTable, {
+			attribute: true,
+			attributeFilter: ['src'],
+			subtree: true,
+			attributeOldValue: true,
+		});
+		this.observerLive.observe(this.dropTable, {
+			childList: true,
+		});
+	}
+}
+
+let scrape = new Scrape();
