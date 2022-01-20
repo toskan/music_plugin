@@ -364,13 +364,10 @@ var MD5 = function (string) {
 	return temp.toLowerCase();
 };
 
-const values = chrome.storage.sync.get(
-	['apiKey', 'apiSecret', 'token'],
-	function (res) {
-		apiKey = res.apiKey;
-		secret = res.apiSecret;
-	}
-);
+const values = chrome.storage.sync.get(['apiKey', 'apiSecret'], function (res) {
+	apiKey = res.apiKey;
+	secret = res.apiSecret;
+});
 
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');
@@ -409,7 +406,7 @@ const wfmuPlayRadioApi = () => {
 				currentSong.track = data.segment.title_html;
 				currentSong.album = data.segment.album_html;
 				console.log(currentSong);
-				values.then(scrobbleTrack());
+				scrobbleTrack();
 				return currentSong;
 			}
 		})
@@ -418,3 +415,5 @@ const wfmuPlayRadioApi = () => {
 
 wfmuPlayRadioApi();
 setInterval(wfmuPlayRadioApi, 15000);
+
+//values.then(scrobbleTrack());

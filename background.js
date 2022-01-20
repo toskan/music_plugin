@@ -1,15 +1,11 @@
 chrome.runtime.onInstalled.addListener(() => {
 	chrome.storage.onChanged.addListener(function (changes) {
 		for (let [key] of Object.entries(changes)) {
-			chrome.storage.sync.get(
-				['apiKey', 'token', 'step'],
-				function (obj) {
-					let apiKey = obj.apiKey;
-					let step = obj.step;
-					console.log(obj.token);
-					openAuthWindow(step, apiKey);
-				}
-			);
+			chrome.storage.sync.get(['apiKey', 'step'], function (obj) {
+				let apiKey = obj.apiKey;
+				let step = obj.step;
+				openAuthWindow(step, apiKey);
+			});
 		}
 	});
 });

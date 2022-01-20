@@ -3,6 +3,13 @@ let secret;
 let token;
 let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
 
+values = chrome.storage.sync.get(['apiKey', 'apiSecret'], async function (res) {
+	apiKey = res.apiKey;
+	secret = res.apiSecret;
+	console.log(apiKey);
+	getTokenAndSessionKey();
+});
+
 /**
 
 *
@@ -366,7 +373,7 @@ const authUrl = () => {
 	let method = 'auth.getSession';
 	let s = signAuth(method);
 	var requestOptions = {
-		method: 'POST',
+		method: 'GET',
 		redirect: 'follow',
 	};
 	//gets session key???
@@ -379,20 +386,14 @@ const authUrl = () => {
 		.catch((error) => console.log('error', error));
 };
 
-const values = chrome.storage.sync.get(
-	['apiKey', 'apiSecret', 'token'],
-	function (res) {
-		apiKey = res.apiKey;
-		secret = res.apiSecret;
-		token = res.token;
-	}
-);
-
-const getTokenAndSessionKey = () => {
+function getTokenAndSessionKey() {
 	let urlString = window.location.href;
 	var url = new URL(urlString);
-	let token = url.searchParams.get('token');
-	chrome.storage.sync.set({ token }).then(values).then(authUrl());
-};
+	token = url.searchParams.get('token');
+	chrome.storage.sync.set({ step: 'authentication' }).then(authUrl());
+}
 
-getTokenAndSessionKey();
+// chrome.storage.sync
+// 	.set({ token, step: 'authentication' })
+// 	.then(values)
+// 	.then(authUrl());

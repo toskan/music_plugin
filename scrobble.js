@@ -358,13 +358,10 @@ var MD5 = function (string) {
 	return temp.toLowerCase();
 };
 
-this.values = chrome.storage.sync.get(
-	['apiKey', 'apiSecret', 'token'],
-	function (res) {
-		apiKey = res.apiKey;
-		secret = res.apiSecret;
-	}
-);
+let values = chrome.storage.sync.get(['apiKey', 'apiSecret'], function (res) {
+	apiKey = res.apiKey;
+	secret = res.apiSecret;
+});
 
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');
@@ -373,6 +370,20 @@ const sign = (params) => {
 
 const loveTrack = (artist, method, track) => {
 	let params = `api_key=${apiKey}&artist=${artist}&method=${method}&sk=${sessionKey}&track=${track}`;
+	let s = sign(params);
+	var requestOptions = {
+		method: 'POST',
+		redirect: 'follow',
+	};
+	fetch(`${apiRoot}?${params}&api_sig=${s}`, requestOptions)
+		.then((response) => response.text())
+		.then((result) => console.log(result))
+		.catch((error) => console.log('error', error));
+};
+
+const scrobbleTrack = (artist, method, track) => {
+	let timestamp = Math.round(new Date().getTime() / 1000);
+	let params = `api_key=${apiKey}&artist=${artist}&method=${method}&sk=${sessionKey}&timestamp=${timestamp}&track=${track}`;
 	let s = sign(params);
 	var requestOptions = {
 		method: 'POST',
@@ -416,9 +427,7 @@ class Scrape {
 						'.col_album_title font'
 					)[0].innerText;
 					console.log(this);
-					values.then(
-						loveTrack(this.artist, this.apiMethod, this.track)
-					);
+					loveTrack(this.artist, this.apiMethod, this.track);
 				}
 			});
 		});
@@ -437,11 +446,12 @@ class Scrape {
 					if (!/^drop_/.test(node.id)) {
 						return true;
 					}
-					this.method = 'track.scrobble';
+					this.apiMethod = 'track.scrobble';
 					this.artist = this.getValueByClass(node, 'col_artist');
 					this.track = this.getValueByClass(node, 'col_song_title');
 					this.album = this.getValueByClass(node, 'col_album_title');
 					console.log(this);
+					scrobbleTrack(this.artist, this.apiMethod, this.track);
 				});
 			});
 		});
