@@ -1,6 +1,6 @@
 let apiKey;
 let secret;
-let sessionKey = 'nZHFQVj9sTMn-342BhuDO_Lx6hKaQQ_L';
+let sessionKey;
 let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
 
 /**
@@ -358,11 +358,6 @@ var MD5 = function (string) {
 	return temp.toLowerCase();
 };
 
-let values = chrome.storage.sync.get(['apiKey', 'apiSecret'], function (res) {
-	apiKey = res.apiKey;
-	secret = res.apiSecret;
-});
-
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');
 	return MD5(`${params}${secret}`);
@@ -468,4 +463,13 @@ class Scrape {
 	}
 }
 
-let scrape = new Scrape();
+let values = chrome.storage.sync.get(
+	['apiKey', 'apiSecret', 'sessionKey'],
+	function (res) {
+		apiKey = res.apiKey;
+		secret = res.apiSecret;
+		sessionKey = res.sessionKey;
+		console.log(sessionKey + ' sessionKey');
+		let scrape = new Scrape();
+	}
+);

@@ -6,8 +6,8 @@ let currentSong = {
 
 let apiKey;
 let secret;
+let sessionKey;
 let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
-let sessionKey = 'nZHFQVj9sTMn-342BhuDO_Lx6hKaQQ_L';
 
 /**
 
@@ -364,10 +364,15 @@ var MD5 = function (string) {
 	return temp.toLowerCase();
 };
 
-const values = chrome.storage.sync.get(['apiKey', 'apiSecret'], function (res) {
-	apiKey = res.apiKey;
-	secret = res.apiSecret;
-});
+const values = chrome.storage.sync.get(
+	['apiKey', 'apiSecret', 'sessionKey'],
+	function (res) {
+		apiKey = res.apiKey;
+		secret = res.apiSecret;
+		sessionKey = res.sessionKey;
+		console.log(sessionKey);
+	}
+);
 
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');

@@ -376,13 +376,18 @@ const authUrl = () => {
 		method: 'GET',
 		redirect: 'follow',
 	};
-	//gets session key???
 	fetch(
 		`${apiRoot}?method=${method}&api_key=${apiKey}&token=${token}&api_sig=${s}`,
 		requestOptions
 	)
-		.then((response) => console.log(response.text()))
-		.then((result) => console.log(result))
+		.then((data) => data.text())
+		.then((result) => {
+			let sessionKey = new window.DOMParser()
+				.parseFromString(result, 'text/xml')
+				.getElementsByTagName('key')[0].innerHTML;
+			chrome.storage.sync.set({ sessionKey });
+			console.log(sessionKey);
+		})
 		.catch((error) => console.log('error', error));
 };
 
@@ -392,8 +397,3 @@ function getTokenAndSessionKey() {
 	token = url.searchParams.get('token');
 	chrome.storage.sync.set({ step: 'authentication' }).then(authUrl());
 }
-
-// chrome.storage.sync
-// 	.set({ token, step: 'authentication' })
-// 	.then(values)
-// 	.then(authUrl());

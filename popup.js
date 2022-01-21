@@ -52,7 +52,12 @@ const getCredentials = (e) => {
 
 const resetCredentials = () => {
 	chrome.storage.sync
-		.set({ step: 'keySubmit', apiKey: undefined, apiSecret: undefined })
+		.set({
+			step: 'keySubmit',
+			apiKey: undefined,
+			apiSecret: undefined,
+			sessionKey: undefined,
+		})
 		.then(showHide());
 };
 
