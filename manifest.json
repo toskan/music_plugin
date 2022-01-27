@@ -22,7 +22,12 @@
 			"js": ["scrobble.js"]
 		},
 		{
-			"matches": ["https://*.wfmu.org/listen-live/*"],
+			"matches": [
+				"https://*.wfmu.org/listen-live/*",
+				"https://tunein.com/radio/WFMU-911-s28808/",
+				"https://*.radio.net/s/wfmu",
+				"https://onlineradiobox.com/us/wfmu/?cs=us.wfmu*"
+			],
 			"js": ["wfmuPlayRadioApi.js"]
 		},
 		{

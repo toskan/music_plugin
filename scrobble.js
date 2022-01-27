@@ -378,6 +378,7 @@ const loveTrack = (artist, method, track) => {
 
 const scrobbleTrack = (artist, method, track) => {
 	let timestamp = Math.round(new Date().getTime() / 1000);
+	//the parameters need to be ordered alphabetically
 	let params = `api_key=${apiKey}&artist=${artist}&method=${method}&sk=${sessionKey}&timestamp=${timestamp}&track=${track}`;
 	let s = sign(params);
 	var requestOptions = {

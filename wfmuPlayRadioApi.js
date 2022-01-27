@@ -395,7 +395,8 @@ const scrobbleTrack = () => {
 };
 
 const wfmuPlayRadioApi = () => {
-	const url = 'https://wfmu.org/currentliveshows.php?json=1';
+	const url =
+		'https://accesscontrolalloworiginall.herokuapp.com/https://wfmu.org/currentliveshows.php?json=1';
 	let requestOptions = {
 		method: 'GET',
 		redirect: 'follow',
