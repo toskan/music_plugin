@@ -1,6 +1,6 @@
 {
-	"name": "Sends WMFU to Last.fm",
-	"description": "Add WMFU Radio current songs playing and favorites to Last.fm account",
+	"name": "WFMU Radio to Last.fm",
+	"description": "Add WFMU Radio current songs playing and favorites to Last.fm account",
 	"version": "1.0",
 	"manifest_version": 3,
 	"background": {
@@ -19,7 +19,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*.wfmu.org/playlists/shows/*"],
-			"js": ["scrobble.js"]
+			"js": ["scrobble.js", "MD5.js"]
 		},
 		{
 			"matches": [
@@ -28,11 +28,11 @@
 				"https://*.radio.net/s/wfmu",
 				"https://onlineradiobox.com/us/wfmu/?cs=us.wfmu*"
 			],
-			"js": ["wfmuPlayRadioApi.js"]
+			"js": ["wfmuPlayRadioApi.js", "MD5.js"]
 		},
 		{
 			"matches": ["https://*.last.fm/api/auth?token*"],
-			"js": ["lastFmGetToken.js"]
+			"js": ["lastFmGetToken.js", "MD5.js"]
 		}
 	]
 }
