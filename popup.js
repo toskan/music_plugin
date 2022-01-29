@@ -39,14 +39,14 @@ const getCredentials = (e) => {
 		let apiKey = document.getElementById('api-key').value;
 		chrome.storage.sync
 			.set({ apiKey, step: 'secretSubmit' })
-			.then(showHide());
+			.then(showHide);
 	}
 	if (e.currentTarget.id === 'credentials-form-secret') {
 		let apiSecret = document.getElementById('api-secret').value;
 
 		chrome.storage.sync
 			.set({ step: 'scrobbleReady', apiSecret })
-			.then(showHide());
+			.then(showHide);
 	}
 };
 
@@ -58,7 +58,7 @@ const resetCredentials = () => {
 			apiSecret: undefined,
 			sessionKey: undefined,
 		})
-		.then(showHide());
+		.then(showHide);
 };
 
 formKey.addEventListener('submit', getCredentials);

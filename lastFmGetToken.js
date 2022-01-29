@@ -40,5 +40,5 @@ function getTokenAndSessionKey() {
 	let urlString = window.location.href;
 	var url = new URL(urlString);
 	token = url.searchParams.get('token');
-	chrome.storage.sync.set({ step: 'authentication' }).then(authUrl());
+	chrome.storage.sync.set({ step: 'authentication' }).then(authUrl);
 }
