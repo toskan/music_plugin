@@ -27,7 +27,7 @@ const sign = (params) => {
 const scrobbleTrack = () => {
 	let method = 'track.scrobble';
 	let timestamp = Math.round(new Date().getTime() / 1000);
-	let params = `api_key=${apiKey}&artist=${currentSong.artist}&method=${method}&sk=${sessionKey}&timestamp=${timestamp}&track=${currentSong.track}`;
+	let params = `album=${currentSong.album}&api_key=${apiKey}&artist=${currentSong.artist}&method=${method}&sk=${sessionKey}&timestamp=${timestamp}&track=${currentSong.track}`;
 	let s = sign(params);
 	var requestOptions = {
 		method: 'POST',
@@ -35,8 +35,8 @@ const scrobbleTrack = () => {
 	};
 	fetch(`${apiRoot}?${params}&api_sig=${s}`, requestOptions)
 		.then((response) => response.text())
-		.then((result) => console.log(result))
-		.catch((error) => console.log('error', error));
+		.then(console.log)
+		.catch(console.log);
 };
 
 const wfmuPlayRadioApi = () => {
@@ -57,14 +57,13 @@ const wfmuPlayRadioApi = () => {
 				data.segment.title_html !== undefined
 			) {
 				currentSong.artist = data.segment.artist_html;
-				currentSong.track = data.segment.title_html;
+				currentSong.track = data.segment.title_html.trim();
 				currentSong.album = data.segment.album_html;
-				console.log(currentSong);
 				scrobbleTrack();
 				return currentSong;
 			}
 		})
-		.catch((error) => console.log('error', error));
+		.catch(console.log);
 };
 
 wfmuPlayRadioApi();

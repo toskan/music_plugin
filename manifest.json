@@ -1,7 +1,7 @@
 {
 	"name": "WFMU Radio to Last.fm",
 	"description": "Add WFMU Radio current songs playing and favorites to Last.fm account",
-	"version": "1.0",
+	"version": "1",
 	"manifest_version": 3,
 	"background": {
 		"service_worker": "background.js"
@@ -26,7 +26,8 @@
 				"https://*.wfmu.org/listen-live/*",
 				"https://tunein.com/radio/WFMU-911-s28808/",
 				"https://*.radio.net/s/wfmu",
-				"https://onlineradiobox.com/us/wfmu/?cs=us.wfmu*"
+				"https://onlineradiobox.com/us/wfmu/?cs=us.wfmu*",
+				"https://*.radiorethink.com/tuner/index.cfm?stationCode=wfmu*"
 			],
 			"js": ["wfmuPlayRadioApi.js", "MD5.js"]
 		},
