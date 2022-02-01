@@ -71,7 +71,6 @@ class Scrape {
 							.querySelectorAll('.col_song_title font')[0]
 							.innerText.trim()
 							.replace(regExSpecialChars, ' ');
-						console.log('hey');
 						this.album = parent
 							.querySelectorAll('.col_album_title font')[0]
 							.innerText.trim()

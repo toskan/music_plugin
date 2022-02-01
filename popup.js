@@ -8,13 +8,13 @@ const showHide = () => {
 		document.getElementById('reset').style.display = 'none';
 		document.getElementById('secret-submit').style.display = 'none';
 		document.getElementById('get-credentials').style.display = 'block';
-		document.getElementById('key-submit').style.display = 'block';
+		document.getElementById('key-submit').style.display = 'flex';
 		if (obj.step == 'keySubmit') {
 			document.getElementById('scrobble-ready').style.display = 'none';
 			document.getElementById('reset').style.display = 'none';
 			document.getElementById('secret-submit').style.display = 'none';
 			document.getElementById('get-credentials').style.display = 'block';
-			document.getElementById('key-submit').style.display = 'block';
+			document.getElementById('key-submit').style.display = 'flex';
 		}
 		if (obj.step == 'secretSubmit') {
 			document.getElementById('get-credentials').style.display = 'none';
@@ -36,13 +36,13 @@ const showHide = () => {
 const getCredentials = (e) => {
 	e.preventDefault();
 	if (e.currentTarget.id === 'credentials-form-key') {
-		let apiKey = document.getElementById('api-key').value;
+		let apiKey = document.getElementById('api-key').value.trim();
 		chrome.storage.sync
 			.set({ apiKey, step: 'secretSubmit' })
 			.then(showHide);
 	}
 	if (e.currentTarget.id === 'credentials-form-secret') {
-		let apiSecret = document.getElementById('api-secret').value;
+		let apiSecret = document.getElementById('api-secret').value.trim();
 
 		chrome.storage.sync
 			.set({ step: 'scrobbleReady', apiSecret })

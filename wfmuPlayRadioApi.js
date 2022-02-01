@@ -16,7 +16,6 @@ const values = chrome.storage.sync.get(
 		apiKey = res.apiKey;
 		secret = res.apiSecret;
 		sessionKey = res.sessionKey;
-		console.log(sessionKey);
 	}
 );
 

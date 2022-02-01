@@ -4,6 +4,8 @@ chrome.runtime.onInstalled.addListener(() => {
 			chrome.storage.sync.get(['apiKey', 'step'], function (obj) {
 				let apiKey = obj.apiKey;
 				let step = obj.step;
+				console.log('openauthwinndowaboutorun');
+				console.log(step + ' current step');
 				openAuthWindow(step, apiKey);
 			});
 		}
@@ -12,6 +14,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 const openAuthWindow = (step, apiKey) => {
 	if (step == 'scrobbleReady') {
+		console.log('scrobbleready');
 		var url = `https://www.last.fm/api/auth/?api_key=${apiKey}`;
 		chrome.tabs.create({ url });
 	} else {

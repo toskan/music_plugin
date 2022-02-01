@@ -1,9 +1,88 @@
 html,
 body {
-	min-height: 20em;
-	min-width: 10rem;
+	min-height: 7em;
+	min-width: 25rem;
+	font-size: 1em;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #504f54;
+	background-color: #fff;
 }
-#scrobble-ready,
-#reset,
-#heading {
+label {
+	display: none;
+}
+#get-credentials h5,
+#scrobble-ready h5 {
+	font-size: 0.9em;
+	font-weight: 500;
+}
+#get-credentials h5 > p {
+	display: inline;
+	font-size: inherit;
+}
+#get-credentials h5 > p > a {
+	font-weight: inherit;
+	text-underline-offset: 10%;
+	text-decoration-thickness: 0.1em;
+}
+#get-credentials h5 > p > a:link {
+	color: #0000d8;
+}
+#get-credentials h5 > p > a:visited {
+	color: #00003f;
+}
+#get-credentials h5 > p > a:hover {
+	color: #b300b3;
+}
+#key-submit,
+#secret-submit {
+	flex-direction: column;
+}
+.key-form,
+.secret-form {
+	display: flex;
+	width: 100%;
+}
+.key-input,
+.secret-input {
+	width: 75%;
+}
+.key-input > input,
+.secret-input > input {
+	width: 90%;
+	padding: 0.35em;
+	border: 1px solid #999;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgb(0 0 0 / 10%);
+}
+.key-submit,
+.secret-submit {
+	width: 25%;
+}
+.key-submit > input,
+.secret-submit > input {
+	width: 90%;
+	background-color: #0000d8;
+	color: #fff;
+	padding: 0.5em;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgb(0 0 0 / 10%);
+	border: 0px solid transparent;
+	text-shadow: 0px 0px 0px transparent;
+}
+.key-submit > input:hover,
+.secret-submit > input:hover {
+	cursor: pointer;
+	background-color: #0000a5;
+}
+#reset-button {
+	all: unset;
+	text-decoration: underline;
+	text-underline-offset: 10%;
+	text-decoration-thickness: 0.1em;
+	cursor: pointer;
+	margin: 0.6em 0 0.3em 0;
+	font-size: 0.8em;
+}
+#reset-button:hover {
+	color: #69686e;
 }

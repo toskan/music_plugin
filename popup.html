@@ -7,25 +7,40 @@
 
     <body>
         <div id='heading'>
-            <h4>WFMU Radio to Last.fm Connect</h1>
+            <h4>Scrobble WFMU Radio to last.fm </h1>
         </div>
         <div>
             <div id='get-credentials'>
-                <h5>Create or get your Last.fm API Credentials</h4>
-                    <p><a href="http://www.last.fm/api/accounts" target="_blank">Last.fm</a></p>
+                <h5>Get your API Credentials at <p><a href="http://www.last.fm/api/accounts" target="_blank">last.fm</a>
+                    </p>
+                    </h4>
             </div>
             <div id="key-submit">
                 <form action="/action_page.php" id='credentials-form-key'>
-                    <label for="lastFmApiKey">API Key:</label><br />
-                    <input type="text" id="api-key" name="lastFmApiKey" value="" /><br /><br />
-                    <input type="submit" value="Submit" />
+                    <div class="key-form">
+                        <label for="lastFmApiKey">API Key:</label><br />
+                        <div class="key-input">
+                            <input type="text" id="api-key" name="lastFmApiKey" value=""
+                                placeholder="API Key" /><br /><br />
+                        </div>
+                        <div class="key-submit">
+                            <input type="submit" value="submit key" />
+                        </div>
+                    </div>
                 </form>
             </div>
             <div id="secret-submit">
                 <form action="/action_page.php" id='credentials-form-secret'>
-                    <label for="lastFmApiSecret">Shared Secret:</label><br />
-                    <input type="text" id="api-secret" name="lastFmApiSecret" value="" /><br /><br />
-                    <input type="submit" value="Submit" />
+                    <div class="secret-form">
+                        <label for="lastFmApiSecret">Shared Secret:</label><br />
+                        <div class="secret-input">
+                            <input type="text" id="api-secret" name="lastFmApiSecret" value=""
+                                placeholder="Shared Secret" /><br /><br />
+                        </div>
+                        <div class="secret-submit">
+                            <input type="submit" value="submit secret" />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -33,7 +48,7 @@
             <h5>Ready to track your WFMU listening and favorites</h5>
         </div>
         <div id='reset'>
-            <button id='reset-button'>Reset Key and Secret</button>
+            <button id='reset-button' name='reset api key and api secret'>Reset Key and Secret</button>
         </div>
     </body>
     <script src="popup.js"></script>
