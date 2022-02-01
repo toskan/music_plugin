@@ -8,6 +8,7 @@ let apiKey;
 let secret;
 let sessionKey;
 let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
+let regExSpecialChars = /[\&\:\+\?\=]/g;
 
 const values = chrome.storage.sync.get(
 	['apiKey', 'apiSecret', 'sessionKey'],
@@ -56,9 +57,17 @@ const wfmuPlayRadioApi = () => {
 				currentSong.track !== data.segment.title_html &&
 				data.segment.title_html !== undefined
 			) {
-				currentSong.artist = data.segment.artist_html;
-				currentSong.track = data.segment.title_html.trim();
-				currentSong.album = data.segment.album_html;
+				currentSong.artist = data.segment.artist_html.replace(
+					regExSpecialChars,
+					' '
+				);
+				currentSong.track = data.segment.title_html
+					.trim()
+					.replace(regExSpecialChars, ' ');
+				currentSong.album = data.segment.album_html.replace(
+					regExSpecialChars,
+					' '
+				);
 				scrobbleTrack();
 				return currentSong;
 			}

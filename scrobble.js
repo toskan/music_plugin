@@ -2,6 +2,7 @@ let apiKey;
 let secret;
 let sessionKey;
 let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
+let regExSpecialChars = /[\&\:\+\?\=]/g;
 
 const sign = (params) => {
 	params = [...params].filter((e) => e !== '&' && e !== '=').join('');
@@ -63,15 +64,18 @@ class Scrape {
 					) {
 						this.artist = parent
 							.querySelectorAll('.col_artist font')[0]
-							.innerText.trim();
+							.innerText.trim()
+							.replace(regExSpecialChars, ' ');
 
 						this.track = parent
 							.querySelectorAll('.col_song_title font')[0]
-							.innerText.trim();
-
+							.innerText.trim()
+							.replace(regExSpecialChars, ' ');
+						console.log('hey');
 						this.album = parent
 							.querySelectorAll('.col_album_title font')[0]
-							.innerText.trim();
+							.innerText.trim()
+							.replace(regExSpecialChars, ' ');
 						loveTrack(this.artist, this.apiMethod, this.track);
 					}
 				}
@@ -99,18 +103,21 @@ class Scrape {
 						this.getValueByClass(node, 'col_song_title') !==
 							undefined
 					) {
-						this.artist = this.getValueByClass(
-							node,
-							'col_artist'
-						).trim();
+						this.artist = this.getValueByClass(node, 'col_artist')
+							.trim()
+							.replace(regExSpecialChars, ' ');
 						this.track = this.getValueByClass(
 							node,
 							'col_song_title'
-						).trim();
+						)
+							.trim()
+							.replace(regExSpecialChars, ' ');
 						this.album = this.getValueByClass(
 							node,
 							'col_album_title'
-						).trim();
+						)
+							.trim()
+							.replace(regExSpecialChars, ' ');
 						scrobbleTrack(
 							this.album,
 							this.artist,
