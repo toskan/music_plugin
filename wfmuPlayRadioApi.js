@@ -53,7 +53,10 @@ const wfmuPlayRadioApi = () => {
 				currentSong.track = null;
 			}
 			if (
-				currentSong.track !== data.segment.title_html &&
+				currentSong.track !==
+					data.segment.title_html
+						.trim()
+						.replace(regExSpecialChars, ' ') &&
 				data.segment.title_html !== undefined
 			) {
 				currentSong.artist = data.segment.artist_html.replace(

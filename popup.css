@@ -11,7 +11,9 @@ label {
 	display: none;
 }
 #get-credentials h5,
-#scrobble-ready h5 {
+#scrobble-ready h5,
+#authentication h5,
+#failed h5 {
 	font-size: 0.9em;
 	font-weight: 500;
 }

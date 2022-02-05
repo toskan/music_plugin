@@ -57,8 +57,10 @@ class Scrape {
 					this.apiMethod = 'track.love';
 					if (
 						this.track !==
-							parent.querySelectorAll('.col_song_title font')[0]
-								.innerText &&
+							parent
+								.querySelectorAll('.col_song_title font')[0]
+								.innerText.trim()
+								.replace(regExSpecialChars, ' ') &&
 						parent.querySelectorAll('.col_song_title font')[0]
 							.innerText !== undefined
 					) {
@@ -98,7 +100,9 @@ class Scrape {
 					this.apiMethod = 'track.scrobble';
 					if (
 						this.track !==
-							this.getValueByClass(node, 'col_song_title') &&
+							this.getValueByClass(node, 'col_song_title')
+								.trim()
+								.replace(regExSpecialChars, ' ') &&
 						this.getValueByClass(node, 'col_song_title') !==
 							undefined
 					) {

@@ -6,7 +6,6 @@ let apiRoot = 'https://ws.audioscrobbler.com/2.0/';
 values = chrome.storage.sync.get(['apiKey', 'apiSecret'], async function (res) {
 	apiKey = res.apiKey;
 	secret = res.apiSecret;
-	console.log(apiKey);
 	getTokenAndSessionKey();
 });
 
@@ -31,14 +30,19 @@ const authUrl = () => {
 				.parseFromString(result, 'text/xml')
 				.getElementsByTagName('key')[0].innerHTML;
 			chrome.storage.sync.set({ sessionKey });
-			console.log(sessionKey);
+			if (sessionKey) {
+				chrome.storage.sync.set({ step: 'scrobbleReady' });
+			}
+			if (!sessionKey) {
+				chrome.storage.sync.set({ step: 'failed' });
+			}
 		})
-		.catch((error) => console.log('error', error));
+		.catch(console.log);
 };
 
 function getTokenAndSessionKey() {
 	let urlString = window.location.href;
 	var url = new URL(urlString);
 	token = url.searchParams.get('token');
-	chrome.storage.sync.set({ step: 'authentication' }).then(authUrl);
+	authUrl();
 }

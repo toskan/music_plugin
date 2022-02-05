@@ -4,31 +4,60 @@ const resetButton = document.getElementById('reset-button');
 
 const showHide = () => {
 	chrome.storage.sync.get('step', function (obj) {
+		document.getElementById('authentication').style.display = 'none';
 		document.getElementById('scrobble-ready').style.display = 'none';
 		document.getElementById('reset').style.display = 'none';
 		document.getElementById('secret-submit').style.display = 'none';
+		document.getElementById('failed').style.display = 'none';
 		document.getElementById('get-credentials').style.display = 'block';
 		document.getElementById('key-submit').style.display = 'flex';
-		if (obj.step == 'keySubmit') {
+		if (obj.step == 'keySubmit' || obj.step == 'secretSubmit') {
+			document.getElementById('authentication').style.display = 'none';
 			document.getElementById('scrobble-ready').style.display = 'none';
 			document.getElementById('reset').style.display = 'none';
-			document.getElementById('secret-submit').style.display = 'none';
-			document.getElementById('get-credentials').style.display = 'block';
-			document.getElementById('key-submit').style.display = 'flex';
+			document.getElementById('failed').style.display = 'none';
+			if (obj.step == 'keySubmit') {
+				document.getElementById('secret-submit').style.display = 'none';
+				document.getElementById('get-credentials').style.display =
+					'block';
+				document.getElementById('key-submit').style.display = 'flex';
+			}
+			if (obj.step == 'secretSubmit') {
+				document.getElementById('key-submit').style.display = 'none';
+				document.getElementById('get-credentials').style.display =
+					'block';
+				document.getElementById('reset').style.display = 'block';
+				document.getElementById('secret-submit').style.display = 'flex';
+			}
 		}
-		if (obj.step == 'secretSubmit') {
+		if (
+			obj.step == 'authentication' ||
+			obj.step == 'scrobbleReady' ||
+			obj.step == 'failed'
+		) {
 			document.getElementById('get-credentials').style.display = 'none';
 			document.getElementById('key-submit').style.display = 'none';
-			document.getElementById('get-credentials').style.display = 'block';
-			document.getElementById('reset').style.display = 'block';
-			document.getElementById('secret-submit').style.display = 'block';
-		}
-		if (obj.step == 'scrobbleReady' || obj.step == 'authentication') {
-			document.getElementById('get-credentials').style.display = 'none';
-			document.getElementById('key-submit').style.display = 'none';
 			document.getElementById('secret-submit').style.display = 'none';
-			document.getElementById('scrobble-ready').style.display = 'block';
 			document.getElementById('reset').style.display = 'block';
+			if (obj.step == 'authentication') {
+				document.getElementById('authentication').style.display =
+					'block';
+				document.getElementById('scrobble-ready').style.display =
+					'none';
+				document.getElementById('failed').style.display = 'none';
+			}
+			if (obj.step == 'scrobbleReady') {
+				document.getElementById('scrobble-ready').style.display =
+					'block';
+				document.getElementById('authentication').style.display =
+					'none';
+				document.getElementById('failed').style.display = 'none';
+			}
+			if (obj.step == 'failed') {
+				document.getElementById('failed').style.display = 'block';
+				document.getElementById('authentication').style.display =
+					'none';
+			}
 		}
 	});
 };
@@ -43,9 +72,8 @@ const getCredentials = (e) => {
 	}
 	if (e.currentTarget.id === 'credentials-form-secret') {
 		let apiSecret = document.getElementById('api-secret').value.trim();
-
 		chrome.storage.sync
-			.set({ step: 'scrobbleReady', apiSecret })
+			.set({ step: 'authentication', apiSecret })
 			.then(showHide);
 	}
 };

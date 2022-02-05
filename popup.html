@@ -7,7 +7,7 @@
 
     <body>
         <div id='heading'>
-            <h4>Scrobble WFMU Radio to last.fm </h1>
+            <h4 id='heading-h4'>Scrobble WFMU Radio with last.fm </h1>
         </div>
         <div>
             <div id='get-credentials'>
@@ -20,8 +20,8 @@
                     <div class="key-form">
                         <label for="lastFmApiKey">API Key:</label><br />
                         <div class="key-input">
-                            <input type="text" id="api-key" name="lastFmApiKey" value=""
-                                placeholder="API Key" /><br /><br />
+                            <input type="text" id="api-key" name="lastFmApiKey" value="" placeholder="API Key"
+                                minlength='32' required /><br /><br />
                         </div>
                         <div class="key-submit">
                             <input type="submit" value="submit key" />
@@ -35,7 +35,7 @@
                         <label for="lastFmApiSecret">Shared Secret:</label><br />
                         <div class="secret-input">
                             <input type="text" id="api-secret" name="lastFmApiSecret" value=""
-                                placeholder="Shared Secret" /><br /><br />
+                                placeholder="Shared Secret" minlength='32' required /><br /><br />
                         </div>
                         <div class="secret-submit">
                             <input type="submit" value="submit secret" />
@@ -44,8 +44,15 @@
                 </form>
             </div>
         </div>
+        <div id='authentication'>
+            <h5>Follow steps and allow acces to connect RadioScrobble</h5>
+        </div>
+        </div>
         <div id='scrobble-ready'>
-            <h5>Ready to track your WFMU listening and favorites</h5>
+            <h5>Ready to track WFMU</h5>
+        </div>
+        <div id='failed'>
+            <h5>Something went wrong. Reset Key and Secret to try again</h5>
         </div>
         <div id='reset'>
             <button id='reset-button' name='reset api key and api secret'>Reset Key and Secret</button>
@@ -54,3 +61,5 @@
     <script src="popup.js"></script>
 
 </html>
+
+<!-- <h5>Something went wrong: Reset Key And Secret and try again</h5> -->
