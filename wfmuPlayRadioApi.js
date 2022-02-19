@@ -52,26 +52,37 @@ const wfmuPlayRadioApi = () => {
 			if (!data.segment.title_html) {
 				currentSong.track = null;
 			}
-			if (
-				currentSong.track !==
+			if (!data.segment.album_html) {
+				currentSong.album = null;
+			}
+			if (!data.segment.artist_html) {
+				currentSong.artist = null;
+			}
+			if (!!data.segment.title_html) {
+				if (
+					currentSong.track !==
 					data.segment.title_html
 						.trim()
-						.replace(regExSpecialChars, ' ') &&
-				data.segment.title_html !== undefined
-			) {
-				currentSong.artist = data.segment.artist_html.replace(
-					regExSpecialChars,
-					' '
-				);
-				currentSong.track = data.segment.title_html
-					.trim()
-					.replace(regExSpecialChars, ' ');
-				currentSong.album = data.segment.album_html.replace(
-					regExSpecialChars,
-					' '
-				);
-				scrobbleTrack();
-				return currentSong;
+						.replace(regExSpecialChars, ' ')
+				) {
+					if (!!data.segment.artist_html) {
+						currentSong.artist = data.segment.artist_html.replace(
+							regExSpecialChars,
+							' '
+						);
+					}
+					currentSong.track = data.segment.title_html
+						.trim()
+						.replace(regExSpecialChars, ' ');
+					if (!!data.segment.album_html) {
+						currentSong.album = data.segment.album_html.replace(
+							regExSpecialChars,
+							' '
+						);
+					}
+					scrobbleTrack();
+					return currentSong;
+				}
 			}
 		})
 		.catch(console.log);

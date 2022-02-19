@@ -33,11 +33,11 @@ const authUrl = () => {
 			if (sessionKey) {
 				chrome.storage.sync.set({ step: 'scrobbleReady' });
 			}
-			if (!sessionKey) {
-				chrome.storage.sync.set({ step: 'failed' });
-			}
 		})
-		.catch(console.log);
+		.catch((error) => {
+			chrome.storage.sync.set({ step: 'failed' });
+			console.log(error);
+		});
 };
 
 function getTokenAndSessionKey() {
