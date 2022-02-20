@@ -10,12 +10,16 @@
             <h4 id='heading-h4'>Scrobble WFMU Radio with last.fm </h1>
         </div>
         <div>
-            <div id='get-credentials'>
+            <div id='get-credentials' class='tooltip'>
                 <h5>Get your API Credentials at <p><a
                             href="https://www.last.fm/login?next=%2Fapi%2Faccount%2Fcreate%3F_pjax%3D%2523content"
-                            target="_blank">last.fm</a>
+                            target="_blank" id="api-create">last.fm</a>
                     </p>
-                    </h4>
+                    <span class="tooltiptext">Create an Application name (required field).
+                        <br>Your credentials are <a href="https://www.last.fm/api/accounts" target="_blank"
+                            id="tooltip-link">here</a>
+                    </span>
+                </h5>
             </div>
             <div id="key-submit">
                 <form action="/action_page.php" id='credentials-form-key'>

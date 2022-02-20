@@ -26,14 +26,43 @@ label {
 	text-underline-offset: 10%;
 	text-decoration-thickness: 0.1em;
 }
-#get-credentials h5 > p > a:link {
+#get-credentials h5 > p > #api-create:link {
 	color: #0000d8;
 }
-#get-credentials h5 > p > a:visited {
+#get-credentials h5 > p > #api-create:visited {
 	color: #00003f;
 }
-#get-credentials h5 > p > a:hover {
+#get-credentials h5 > p > #api-create:hover {
 	color: #b300b3;
+}
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+#tooltip-link {
+	color: #5959ff;
+}
+#tooltip-link:hover {
+	color: #ff00ff;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 160px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 6px 0;
+	margin: 3px;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltiptext:hover {
+	visibility: visible;
 }
 #key-submit,
 #secret-submit {
