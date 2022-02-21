@@ -1,5 +1,7 @@
 # music_plugin
 
+## WFMU Radio to LAST.FM
+
 User needs:
 LAST.FM account, last.fm credentials (API Key and Secret: @ https://www.last.fm/api )
 
