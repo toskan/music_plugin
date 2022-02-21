@@ -1,17 +1,20 @@
 # music_plugin
 
 User needs:
-LAST.FM account and get an API Key and Secret (create it at https://www.last.fm/api ). There will be prompts in the extension pop-up to insert those.
+LAST.FM account, last.fm credentials (API Key and Secret: @ https://www.last.fm/api )
 
-The extension allows a user to add the content they are listening to on WFMU RADIO to their LAST.FM account's recent tracks. 
+This extension allows WFMU radio listeners to track what they are listening to. It sends currently playing song info to the recent tracks played in their last.fm account. The user can also favorite songs on WFMU playlists and those will be added to their loved tracks in their last.fm account.
 
-Scrobbles live at:
-https://wfmu.org/listen-live/
-https://tunein.com/radio/WFMU-911-s28808/
-https://www.radio.net/s/wfmu
-https://onlineradiobox.com/us/wfmu/?cs=us.wfmu
-And on the WFMU page with the currently playiing playlist.
+The extension can track what is being listened to on these sites: 
 
-When songs are favorited on WFMU RADIO those are added to the user's loved tracks in their LAST.FM account.
+https://wfmu.org/listen-live/ 
+https://www.radiorethink.com/tuner/index.cfm?stationCode=wfmu
+https://tunein.com/radio/WFMU-911-s28808/ 
+https://www.radio.net/s/wfmu 
+https://onlineradiobox.com/us/wfmu/?cs=us.wfmu 
 
-The extension uses LAST.FM api's love.track and scrobble.track methods to accompliish this.
+And on the WFMU page with the currently playing playlist (playlist and comments)
+
+The listener can create last.fm credentials in their last.fm account to get an API key and secret. There will be prompts in the extension pop-up that allows them to do so. The link and required field info are provided in the pop-up to facilitate it.
+
+The extension uses last.fm's api love.track and scrobble.track methods to accomplish its functionality.
