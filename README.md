@@ -5,7 +5,7 @@
 ## WFMU Radio to LAST.FM
 
 User needs:
-**LAST.FM account**, **last.fm credentials** (API Key and Secret: @ https://www.last.fm/api )
+**LAST.FM account**, **last.fm credentials** ([Get API Key and Secret](https://www.last.fm/api))
 
 This extension allows WFMU radio listeners to track what they are listening to. It sends currently playing song info to the recent tracks played in their last.fm account. The user can also favorite songs on WFMU playlists and those will be added to their loved tracks in their last.fm account.
 
