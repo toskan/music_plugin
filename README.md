@@ -7,11 +7,11 @@ This extension allows WFMU radio listeners to track what they are listening to. 
 
 The extension can track what is being listened to on these sites: 
 
-https://wfmu.org/listen-live/ 
-https://www.radiorethink.com/tuner/index.cfm?stationCode=wfmu
-https://tunein.com/radio/WFMU-911-s28808/ 
-https://www.radio.net/s/wfmu 
-https://onlineradiobox.com/us/wfmu/?cs=us.wfmu 
+[https://wfmu.org/listen-live/](https://wfmu.org/listen-live/)
+[radiorethink] (https://www.radiorethink.com/tuner/index.cfm?stationCode=wfmu)
+[tunein] (https://tunein.com/radio/WFMU-911-s28808/) 
+[radio.net] (https://www.radio.net/s/wfmu)
+[onlineradiobox] (https://onlineradiobox.com/us/wfmu/?cs=us.wfmu)
 
 And on the WFMU page with the currently playing playlist (playlist and comments)
 
