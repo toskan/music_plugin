@@ -32,6 +32,7 @@ The extension can track what you are listening to on these sites:
 
   - on the WFMU page with the currently playing playlist (playlist and comments)
   - songs on WFMU playlists that are starred / favorited (sent to your loved track list in your last.fm profile)
+ 
 
 Please, get in touch at wfmu.plugin AT gmail.com if you run into any issues. 
 
