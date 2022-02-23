@@ -20,6 +20,8 @@ This will prompt a new last.fm tab to open requesting permission to connect the 
 
 Once permission is granted you should receive a notification that the application is ready to scrobble your WFMU tracks. If you have notifications turned off you can check the extension pop-up which should state whether or not the process was completed successfully.
 
+If the process was not successful, you can select the **Reset Key and Sercret** link inside the pop-up which will allow you to try again.
+
 The extension can track what you are listening to on these sites: 
 
   - [https://wfmu.org/listen-live/](https://wfmu.org/listen-live/)
@@ -30,8 +32,6 @@ The extension can track what you are listening to on these sites:
 
   - on the WFMU page with the currently playing playlist (playlist and comments)
   - songs on WFMU playlists that are starred / favorited (sent to your loved track list in your last.fm profile)
-
-If the process was not successful, you can select the **Reset Key and Sercret** link inside the pop-up which will allow you to try again.
 
 Please, get in touch at wfmu.plugin AT gmail.com if you run into any issues. 
 
