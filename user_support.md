@@ -16,7 +16,7 @@ First submit the key, then click on the pinned extension again to submit the sec
 
 This will prompt a new last.fm tab to open requesting permission to connect the app.  
 
-![This is an image](/images/app_connect.png)
+![This is an image](/images/connect_app.png)
 
 Once permission is granted you should receive a notification that the application is ready to scrobble your WFMU tracks. If you have notifications turned off you can check the extension pop-up which should state whether or not the process was completed successfully.
 
