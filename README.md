@@ -23,7 +23,7 @@ The extension can track what is being listened to on these sites:
 
 The listener can create last.fm credentials in their last.fm account to get an API key and secret. There will be prompts in the extension pop-up that allows them to do so. The link and required field info are provided in the pop-up to facilitate it.
 
-Visit [the support page](/user_support/) for detailed user instructions.
+Visit [the support page](/user_support.md/) for detailed user instructions.
 
 ### Functionality
 
