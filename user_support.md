@@ -10,5 +10,7 @@ Login to your Last.fm account and navigate to [this Last.fm page](https://www.la
 
 After you submit the form you will receive your API key and secret which you can then enter into the extension popup by clicking on it in the top right hand corner of the chrome browser where it iis  pinned. If you need to reference your API key and secret again, you can find it [here](https://www.last.fm/api/accounts).
 
+![This is an image](/images/enter_key.png)
+
 First submit the key, then click on the pinned extension again to submit the secret.
 
