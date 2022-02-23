@@ -14,3 +14,13 @@ After you submit the form you will receive your API key and secret which you can
 
 First submit the key, then click on the pinned extension again to submit the secret.
 
+This will prompt a new last.fm tab to open requesting permission to connect the app.  
+
+![This is an image](/images/app_connect.png)
+
+Once permission is granted you should receive a notification that the application is ready to scrobble your WFMU tracks. If you have notifications turned off you can check the extension pop-up which should state whether or not the process was completed successfully.
+
+If the process was not successful, you can select the Reset Key and Sercret link inside the pop-up which will allow you to try again.
+
+Please, get in touch at wfmu.plugin AT gmail.com if you run into any issues. 
+
