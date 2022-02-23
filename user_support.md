@@ -1,4 +1,4 @@
-# ![This is an image](/images/radio_32px.png) WFMU Radio to LAST.FM  
+# ![This is an image](/images/radio_32px.png)   WFMU Radio to LAST.FM  
 
 ## User Support
 
