@@ -2,7 +2,7 @@
 
 ## User Support
 
-**After installing the extension, pin it** in order to use the extension pop-up. Click on the puzzle piece in the top right corner of your chrome window. Select the pin next to the WFMU Radio to Last.fm extension.
+**After installing the extension**, you can either **pin it** or **click on it** in order to use the extension pop-up. Click on the puzzle piece in the top right corner of your chrome window. Select the pin next to the WFMU Radio to Last.fm extension or click on the extension in the list to open the popup.
 
 ![This is an image](/images/pin_it.png)
 
