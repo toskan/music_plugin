@@ -11,7 +11,9 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 const openAuthWindow = (step, apiKey) => {
+	console.log(step);
 	if (step == 'authentication') {
+		console.log('authentication');
 		var url = `https://www.last.fm/api/auth/?api_key=${apiKey}`;
 		chrome.tabs
 			.create({ url })
